@@ -28,7 +28,7 @@ def handle_citation(message, volume=None, reporter=None, page=None):
 
     # Send the message!
     if response.status == 404:
-        message.reply("Sorry, I can't find that citation in CourtListener."
+        message.reply("Sorry, I can't find that citation in CourtListener.")
     else:
         message.reply(response.url)
 
