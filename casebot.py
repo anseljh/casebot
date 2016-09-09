@@ -8,7 +8,6 @@ from pprint import pprint
 
 settings.DEFAULT_REPLY = "Eh?"
 CL_URL_TEMPLATE = Template("https://www.courtlistener.com/c/$reporter/$volume/$page/")
-MINIMUM_VIABLE_CITATION_PATTERN = r"^(\d+)\s([A-Za-z0-9.]+)\s(\d+)$"
 USER_AGENT_STRING = "casebot https://github.com/anseljh/casebot"
 
 

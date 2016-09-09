@@ -17,8 +17,6 @@ was somewhat abbreviated, so (for now) it only knows how to look up cases by cit
 * reporter (`U.S.`)
 * page (`113`)
 
-Casebot gets confused if there are any spaces in the reporter. So, if you have something like `676 F.3d 854`, make sure there are no spaces in the `F.3d` part. Writing `F. 3d` instead will make Casebot confused.
-
 ## Installation
 
 Casebot runs on your own computer. This can be your own desktop or laptop, or a server. You could probably get it to run on Windows, but so far it's been tested on Mac and Cygwin (a Linux-like environment for Windows).
