@@ -4,20 +4,25 @@ Casebot is a robotic legal assistant for Slack that looks up cases by citation. 
 
 ## How to Use Casebot
 
-Casebot will respond to direct messages, or to @-messages if you add it to a channel. Your message to Casebot should include just a case citation.
+Casebot will respond to direct messages, or to @-messages if you add it to a channel. Your message to Casebot should include just a case citation, or `find` and the name of a case (or part of it).
 
-For example, if you type `@casebot 410 U.S. 113`, Casebot will look up *Roe v. Wade* and give you a link to read the opinion on [CourtListener](https://www.courtlistener.com/).
+### Examples
+
+* If you type `@casebot 410 U.S. 113`, Casebot will look up *Roe v. Wade* from its citation, and will give you a link to read the opinion on [CourtListener](https://www.courtlistener.com/).
+* If you type `@casebot find brown v. board`, Casebot will search CourtListener and find the landmark 1954 Supreme Court case *Brown v. Board of Education*.
 
 ## Limitations
 
 Unfortunately, Casebot's legal education
-was somewhat abbreviated, so (for now) it only knows how to look up cases by citation, like `410 U.S. 113`. For Casebot's purposes, a citation is broken into three parts:
+was somewhat abbreviated, so its citation lookup is fairly rigid. Casebot only knows how to look up well-formed citations, like `410 U.S. 113`. For Casebot's purposes, a citation is broken into three parts:
 
 * volume (the `410` part in the example above)
 * reporter (`U.S.`)
 * page (`113`)
 
 Reporters are also case-sensitive: `U.S.` will work, but `u.s.` will not. Don't worry, a fix is in the works.
+
+When using `find`, Casebot only returns the first result. It may not be what you were looking for!
 
 ## Installation
 

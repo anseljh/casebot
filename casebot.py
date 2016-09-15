@@ -6,11 +6,63 @@ import requests
 from pprint import pprint
 import click
 import configparser
+import json
 
 settings.DEFAULT_REPLY = "Does not compute."
 CL_URL_TEMPLATE = Template("https://www.courtlistener.com/c/$reporter/$volume/$page/")
+CL_FIND_URL_TEMPLATE = Template("https://www.courtlistener.com/api/rest/v3/search/?format=json&q=casename%3A($query)")
 MINIMUM_VIABLE_CITATION_PATTERN = r"^(\d+)\s([A-Za-z0-9.\s]+)\s(\d+)$"
+FIND_PATTERN = r"find\s+(.+)$"
 config = {}
+
+
+@respond_to(FIND_PATTERN)
+def handle_find(message, query):
+    """
+    The `find` command searches CourtListener by case name.
+    https://github.com/anseljh/casebot/issues/3
+    """
+    global config
+
+    url = CL_FIND_URL_TEMPLATE.substitute({'query': query})
+    request_headers = {'user-agent': config['General']['user_agent']}
+    response = requests.get(url, headers=request_headers)
+
+    # Give some output on stdout
+    print(response)
+    pprint(response.headers)
+    print(response.url)
+
+    # Convert from JSON
+    response_data = response.json()
+
+    hits = response_data.get('count')
+    if hits > 0:
+        first = response_data.get('results')[0]
+        pprint(first)
+        url = "https://www.courtlistener.com" + first.get('absolute_url')
+        print(url)
+        name = first.get('caseName')
+        print(name)
+        year = first.get('dateFiled')[:4]
+        print(year)
+        citation = first.get('citation')[0]
+        print(citation)
+        court = first.get('court_citation_string')
+        print(court)
+
+        # msg = "CourtListener had %d hits for the query `%s`. Here's the first:\n"
+        # if court != 'SCOTUS':
+        #     message.reply(msg + "%s, %s (%s %s)\n%s" % (hits, query, name, citation, court, year, url))
+        # else:
+        #     message.reply(msg + "%s, %s (%s)\n%s" % (hits, query, name, citation, year, url))
+
+        if court != 'SCOTUS':
+            message.reply("%s, %s (%s %s)\n%s" % (name, citation, court, year, url))
+        else:
+            message.reply("%s, %s (%s)\n%s" % (name, citation, year, url))
+    else:
+        message.reply("CourtListener had zero results for the query `%s`" % (query))
 
 
 @respond_to(MINIMUM_VIABLE_CITATION_PATTERN)
