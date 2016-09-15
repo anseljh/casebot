@@ -1,6 +1,6 @@
 # Casebot
 
-Casebot is a robotic legal assistant for Slack that looks up cases by citation. It's written in Python, and is licensed under the Affero GPLv3 open source license.
+Casebot is a robotic legal assistant for Slack that looks up cases, either by citation or name. It's written in Python, and is licensed under the Affero GPLv3 open source license.
 
 ## How to Use Casebot
 
