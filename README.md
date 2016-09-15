@@ -28,7 +28,7 @@ When using `find`, Casebot only returns the first result. It may not be what you
 
 Casebot runs on your own computer. This can be your own desktop or laptop, or a server. You could probably get it to run on Windows, but so far it's been tested on Mac and [Cygwin](https://cygwin.com/) (a Linux-like environment for Windows).
 
-1. *If it's not already on your computer*, install [Python](https://www.python.org/downloads/). Casebot was developed in Python 3, but it *should* also work on Python 2. If you're using a Mac, Linux, or Cygwin, you can skip this because Python should be preinstalled.
+1. *If it's not already on your computer*, install [Python](https://www.python.org/downloads/). Casebot was developed in Python 3, but it *should* also work on Python 2. If you're using a Mac, Linux, or Cygwin, you can skip this step because Python should already be installed.
 
 1. Create a Slack bot user at <https://my.slack.com/services/new/bot>. Write down the API token you get.
 
@@ -41,12 +41,12 @@ Casebot runs on your own computer. This can be your own desktop or laptop, or a 
 1. Install the Python packages that Casebot needs. In a terminal:
 
   ```shell
-  pip install -r requirements.txt
+  pip3 install -r requirements.txt
   ```
 
-1. In the same terminal, run `run.sh`:
+1. In the same terminal, run the program, using Python:
 
   ```shell
-  ./run.sh
+  python3 casebot.py
   ```
 1. You should see your bot come online in Slack. Send it a test message!
