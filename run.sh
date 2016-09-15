@@ -1,2 +1,1 @@
-export SLACKBOT_API_TOKEN=YOUR_BOT_API_TOKEN
 python3 casebot.py

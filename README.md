@@ -17,21 +17,23 @@ was somewhat abbreviated, so (for now) it only knows how to look up cases by cit
 * reporter (`U.S.`)
 * page (`113`)
 
+Reporters are also case-sensitive: `U.S.` will work, but `u.s.` will not. Don't worry, a fix is in the works.
+
 ## Installation
 
-Casebot runs on your own computer. This can be your own desktop or laptop, or a server. You could probably get it to run on Windows, but so far it's been tested on Mac and Cygwin (a Linux-like environment for Windows).
+Casebot runs on your own computer. This can be your own desktop or laptop, or a server. You could probably get it to run on Windows, but so far it's been tested on Mac and [Cygwin](https://cygwin.com/) (a Linux-like environment for Windows).
 
-1. If it's not already on your computer, install [Python](https://www.python.org/downloads/). Casebot has only been tested on Python 3, but it *should* also work on version 2. If you're using a Mac or Linux, you can skip this because Python should be preinstalled.
+1. *If it's not already on your computer*, install [Python](https://www.python.org/downloads/). Casebot was developed in Python 3, but it *should* also work on Python 2. If you're using a Mac, Linux, or Cygwin, you can skip this because Python should be preinstalled.
 
-1. Create a Slack bot user at <https://my.slack.com/services/new/bot>. Make note of the API token you get.
+1. Create a Slack bot user at <https://my.slack.com/services/new/bot>. Write down the API token you get.
 
-1. Edit `run.sh` and paste in your new API token just after the equals sign on the first line, replacing `YOUR_BOT_API_TOKEN`:
+1. Edit the `settings.ini` file and paste in your new API token after the equals sign on the line that starts with `slack_token`:
 
   ```
-  export SLACKBOT_API_TOKEN=YOUR_BOT_API_TOKEN
+  slack_token=YOUR_BOT_API_TOKEN
   ```
 
-1. Install Python dependencies. In a terminal:
+1. Install the Python packages that Casebot needs. In a terminal:
 
   ```shell
   pip install -r requirements.txt
