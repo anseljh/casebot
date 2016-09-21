@@ -26,6 +26,13 @@ def handle_find(message, query):
 
     url = CL_FIND_URL_TEMPLATE.substitute({'query': query})
     request_headers = {'user-agent': config['General']['user_agent']}
+
+    # Authenticate to CourtListener using token
+    # https://github.com/anseljh/casebot/issues/7
+    cl_token = config.get('CourtListener').get('courtlistener_token')
+    if cl_token is not None:
+        request_headers['Authenticate'] = 'Token ' + cl_token
+        print("Added CL Authentication Token header")
     response = requests.get(url, headers=request_headers)
 
     # Give some output on stdout
