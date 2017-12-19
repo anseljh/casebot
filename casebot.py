@@ -8,12 +8,31 @@ import click
 import configparser
 import json
 
-settings.DEFAULT_REPLY = "Does not compute."
+settings.DEFAULT_REPLY = "Does not compute. Say `@casebot help` if you're stuck."
 CL_URL_TEMPLATE = Template("https://www.courtlistener.com/c/$reporter/$volume/$page/")
 CL_FIND_URL_TEMPLATE = Template("https://www.courtlistener.com/api/rest/v3/search/?format=json&q=casename%3A($query)")
 MINIMUM_VIABLE_CITATION_PATTERN = r"^(\d+)\s([A-Za-z0-9.\s]+)\s(\d+)$"
 FIND_PATTERN = r"find\s+(.+)$"
+HELP_PATTERN = r"^help"
 config = {}
+
+HELP_MESSAGE = """
+Casebot knows how to do a few things:
+
+* Find a case by citation: `@casebot 410 U.S. 113`
+* Find a case by name: `@casebot find marbury v. madison`
+* Show this help message: `@casebot help`
+
+For more information, read https://github.com/anseljh/casebot/blob/master/README.md.
+"""
+
+
+@respond_to(HELP_PATTERN)
+def handle_help(message):
+    """
+    Show a helpful help message!
+    """
+    message.reply(HELP_MESSAGE)
 
 
 @respond_to(FIND_PATTERN)
